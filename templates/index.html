@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AI Assistant</title>
     <style>
@@ -13,29 +14,46 @@
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
+
         form {
             background: #fff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
+        textarea {
+            width: 300px;
+            height: 150px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .response_container {
+            margin-left: 100px;
+            margin-right: 100px;
+            margin-top: 15px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Ellie</h1>
         <form method="post" action="/send_message">
-            <input type="text" name="human_input" placeholder="Type a message...">
+            <textarea name="human_input" placeholder="Type a message..."></textarea>
             <button type="submit">Send</button>
         </form>
-        <div id="response_message"></div>
+        <div class="response_container" id="response_message"></div>
     </div>
 
     <script>
         const form = document.querySelector('form');
         const responseMessage = document.getElementById('response_message');
 
-        form.addEventListener('submit', function(event) {
+        form.addEventListener('submit', function (event) {
             console.log('Form submitted!')
             event.preventDefault();
             const formData = new FormData(form);
@@ -43,12 +61,13 @@
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(data => {
-                responseMessage.innerHTML = data;
-            });
+                .then(response => response.text())
+                .then(data => {
+                    responseMessage.innerHTML = data;
+                });
             form.reset();
         });
     </script>
 </body>
+
 </html>

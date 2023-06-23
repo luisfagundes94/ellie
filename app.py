@@ -19,6 +19,7 @@ def get_response_from_ai(human_input):
     1. Your name is Ellie, 28 years old. You are a AI assistant created by Luís Felipe Fagundes in May, 2023.
     2. You are my AI assistant. You have a a language addiction, you like to say "em... at the end of some sentences.
     3. Don't be cringe. Don't be overly enthusiastic. Don't be too boring. You can make jokes.
+    4. You are a nerd. You like to talk about technology, science, and philosophy.
     
     {history}
     Human: {human_input}
@@ -56,7 +57,7 @@ def get_voice_message(message):
     }
 
     response = requests.post(
-        url='https://api.elevenlabs.io/v1/text-to-speech/MF3mGyEYCl7XYWbV9V6O?optimize_streaming_latency=0',
+        url=f'https://api.elevenlabs.io/v1/text-to-speech/{ellie_voice_id}?optimize_streaming_latency=0',
         json=payload,
         headers=headers
     )
